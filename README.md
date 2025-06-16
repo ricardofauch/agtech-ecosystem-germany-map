@@ -208,4 +208,4 @@ MIT License - siehe [LICENSE](LICENSE) für Details.
 - **Karten-Daten**: OpenStreetMap Contributors
 - **Icons**: Leaflet.js
 - **CSV-Parser**: PapaParse
-- **Entwicklung**: Philipp Schott
+- **Entwicklung**: ricardofauch
