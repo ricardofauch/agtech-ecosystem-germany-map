@@ -4,7 +4,7 @@
  * A comprehensive interactive map and data visualization tool for the German AgTech ecosystem.
  * Features include interactive mapping, filtering, and detailed organization views.
  * 
- * @author Philipp Schott
+ * @author ricardofauch
  * @version 2.0.0
  * @requires Leaflet.js, Leaflet.markercluster, PapaParse
  */
