@@ -1,6 +1,6 @@
 MIT License
 
-Copyright (c) 2025 Philipp Schott
+Copyright (c) 2025 ricardofauch
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -26,12 +26,12 @@ SOFTWARE.
 
 When using this software, please include the following attribution:
 
-**AgTech Ecosystem Map** by Philipp Schott  
+**AgTech Ecosystem Map** by ricardofauch  
 Licensed under MIT License  
 Original project: https://git.informatik.uni-leipzig.de/ps83huvo/agtech-ecosystem-map
 
 ### For web applications:
 Include in your footer, about page, or credits section:
 ```
-Based on AgTech Ecosystem Map by Philipp Schott (MIT License)
+Based on AgTech Ecosystem Map by ricardofauch (MIT License)
 ```
