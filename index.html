@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Interaktive Karte des deutschen Agritech-Ökosystems mit Startups, Investoren, Forschungsinstituten und weiteren Akteuren.">
+    <title>AgTech-Ökosystem Deutschland</title>
+    
+    <!-- External CSS Dependencies -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/MarkerCluster.Default.css" />
+    <link rel="stylesheet" href="style.css" />
+
+    <!-- Script Dependencies -->
+    <script src="script.js"></script> 
+    
+</head>
+
+<body>
+    <div class="agtech-app" id="agtech-app">
+        <!-- Header Section -->
+        <header class="agtech-header">
+            <h1 class="agtech-title">AgTech Ökosystem Deutschland</h1>
+            <p class="agtech-subtitle">Interaktive Karte mit Startups, Investoren und Forschungsinstituten</p>
+        </header>
+
+        <!-- Loading overlay -->
+        <div class="agtech-loading" id="agtech-loading" style="display: none;">
+            Lade Daten...
+        </div>
+        
+        <!-- Main Application -->
+        <main class="agtech-main">
+            <!-- Map and Detail View Container -->
+            <div class="agtech-container">
+                <!-- Map Section -->
+                <section class="agtech-map-section" aria-label="Interaktive Karte">
+                    <div class="agtech-map" id="agtech-map" role="application" aria-label="AgTech Ökosystem Karte">
+                        <!-- Map controls will be added by JavaScript -->
+                    
+                    
+                    <!-- Info Tooltip -->
+                    <div class="agtech-info-tooltip" id="agtech-info-tooltip">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd" clip-rule="evenodd" d="M12 22C7.28595 22 4.92893 22 3.46447 20.5355C2 19.0711 2 16.714 2 12C2 7.28595 2 4.92893 3.46447 3.46447C4.92893 2 7.28595 2 12 2C16.714 2 19.0711 2 20.5355 3.46447C22 4.92893 22 7.28595 22 12C22 16.714 22 19.0711 20.5355 20.5355C19.0711 22 16.714 22 12 22ZM12 17.75C12.4142 17.75 12.75 17.4142 12.75 17V11C12.75 10.5858 12.4142 10.25 12 10.25C11.5858 10.25 11.25 10.5858 11.25 11V17C11.25 17.4142 11.5858 17.75 12 17.75ZM12 7C12.5523 7 13 7.44772 13 8C13 8.55228 12.5523 9 12 9C11.4477 9 11 8.55228 11 8C11 7.44772 11.4477 7 12 7Z" fill="#666"/>
+                        </svg>
+                        Marker für Details anklicken
+                    </div></div>
+                </section>
+
+                <!-- Detail Panel -->
+                <aside class="agtech-detail-panel" id="agtech-detail-panel" aria-label="Organisationsdetails">
+                    <div class="agtech-detail-header">
+                        <h2 class="agtech-detail-title" id="agtech-detail-title">
+                            <span class="agtech-org-counter" id="agtech-org-counter">0</span>
+                            <span>Akteure</span>
+                        </h2>
+                        <button class="agtech-close-btn" id="agtech-close-detail" aria-label="Details schließen">&times;</button>
+                    </div>
+                    <div class="agtech-detail-content" id="agtech-detail-content">
+                        <!-- Organization cards will be populated by JavaScript -->
+                    </div>
+                </aside>
+            </div>
+
+            <!-- Table Section -->
+            <section class="agtech-table-section" id="agtech-table-section" aria-label="Datentabelle und Filter">
+                <div class="agtech-table-container">
+                    <!-- Filter Panel -->
+                    <aside class="agtech-filter-panel" aria-label="Filter">
+                        <div class="agtech-filter-header">
+                            <h3 class="agtech-filter-title">Filter</h3>
+                            <button class="agtech-filter-toggle" id="agtech-filter-toggle">Filter ausblenden</button>
+                        </div>
+                        <div class="agtech-filter-content" id="agtech-filter-content">
+                            <div class="agtech-filter-group">
+                                <h4 class="agtech-filter-group-title">Akteur-Typ</h4>
+                                <div class="agtech-filter-buttons" id="agtech-type-filters">
+                                    <!-- Type filter buttons will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <div class="agtech-filter-group" id="agtech-category-filter-group">
+                                <h4 class="agtech-filter-group-title">Kategorie</h4>
+                                <div class="agtech-filter-buttons" id="agtech-category-filters">
+                                    <!-- Category filter buttons will be populated by JavaScript -->
+                                </div>
+                            </div>
+                            <button class="agtech-control-btn" id="agtech-back-to-map">Zurück zur Karte</button>
+                        </div>
+                    </aside>
+
+                    <!-- Table -->
+                    <div class="agtech-table-wrapper">
+                        <div class="agtech-table-scroll">
+                            <table class="agtech-table" aria-label="AgTech Organisationen">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Name</th>
+                                        <th scope="col">Typ</th>
+                                        <th scope="col">Kategorie</th>
+                                        <th scope="col">Hauptsitz</th>
+                                        <th scope="col">Website</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="agtech-table-body">
+                                    <!-- Table rows will be populated by JavaScript -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- External JavaScript Dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.5.3/leaflet.markercluster.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+
+</body>
+</html>

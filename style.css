@@ -1,0 +1,770 @@
+
+/* =================================================================
+    AgTech Map Styles - Namespaced to prevent conflicts
+    ================================================================= */
+
+/* Base Container */
+.agtech-app {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.5;
+    color: #333;
+    background-color: #f8f9fa;
+    min-height: 100vh;
+}
+
+.agtech-app * {
+    box-sizing: border-box;
+}
+
+/* Header */
+.agtech-header {
+    padding: .5rem 2rem;
+    color: black;
+    text-align: center;
+}
+
+.agtech-title {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 600;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.agtech-subtitle {
+    margin: 0.5rem 0 0 0;
+    font-size: 1rem;
+    opacity: 0.9;
+    font-weight: 300;
+}
+
+/* Main Layout */
+.agtech-main {
+    padding: 2rem;
+}
+
+.agtech-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    gap: 1.5rem;
+    align-items: flex-start;
+}
+
+/* Map Section */
+.agtech-map-section {
+    flex: 1;
+    min-width: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.agtech-map {
+    height: 70vh;
+    min-height: 500px;
+    width: 100%;
+    position: relative;
+}
+
+/* Map Controls */
+.agtech-map-controls {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.agtech-control-btn {
+    padding: 0.75rem 1rem;
+    background: white;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    color: #333;
+}
+
+.agtech-control-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.agtech-info-tooltip {
+    position: absolute;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 999;
+    padding: 0.75rem 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    font-size: 0.85rem;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+/* Detail Panel */
+.agtech-detail-panel {
+    width: 400px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    max-height: 70vh;
+    overflow: hidden;
+    display: none;
+    flex-direction: column;
+}
+
+.agtech-detail-panel.visible {
+    display: flex;
+}
+
+.agtech-detail-header {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-bottom: 1px solid #dee2e6;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.agtech-detail-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.agtech-org-counter {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    background: #00CD6C;
+    color: white;
+    border-radius: 50%;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.agtech-close-btn {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    width: 2rem;
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.agtech-close-btn:hover {
+    background: #f8f9fa;
+    color: #333;
+}
+
+.agtech-detail-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 0;
+}
+
+/* Organization Cards */
+.agtech-org-card {
+    padding: 1.5rem;
+    border-bottom: 1px solid #f1f3f4;
+    transition: background-color 0.2s ease;
+}
+
+.agtech-org-card:hover {
+    background-color: #f8f9fa;
+}
+
+.agtech-org-card:last-child {
+    border-bottom: none;
+}
+
+.agtech-org-badges {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.agtech-org-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.agtech-org-name {
+    margin: 0 0 0.75rem 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    line-height: 1.3;
+}
+
+.agtech-org-description {
+    margin: 0 0 1rem 0;
+    font-size: 0.9rem;
+    color: #666;
+    line-height: 1.5;
+}
+
+.agtech-org-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #00CD6C;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.9rem;
+    transition: color 0.2s ease;
+}
+
+.agtech-org-link:hover {
+    color: #00a855;
+    text-decoration: underline;
+}
+
+/* Table Section */
+.agtech-table-section {
+    margin-top: 3rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.agtech-table-container {
+    display: flex;
+    min-height: 600px;
+}
+
+/* Filter Panel */
+.agtech-filter-panel {
+    width: 350px;
+    background: #f8f9fa;
+    border-right: 1px solid #dee2e6;
+    display: flex;
+    flex-direction: column;
+}
+
+.agtech-filter-header {
+    padding: 1.5rem;
+    background: white;
+    border-bottom: 1px solid #dee2e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.agtech-filter-title {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.agtech-filter-toggle {
+    display: none;
+    background: #00CD6C;
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.agtech-filter-toggle:hover {
+    background: #00a855;
+}
+
+.agtech-filter-content {
+    flex: 1;
+    padding: 1.5rem;
+    overflow-y: auto;
+}
+
+.agtech-filter-group {
+    margin-bottom: 2rem;
+}
+
+.agtech-filter-group.hidden {
+    display: none;
+}
+
+.agtech-filter-group-title {
+    margin: 0 0 1rem 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #333;
+}
+
+.agtech-filter-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.agtech-filter-btn {
+    padding: 0.5rem 1rem;
+    border: 2px solid transparent;
+    border-radius: 25px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: white;
+    background-color: #6c757d;
+    opacity: 0.5;
+}
+
+.agtech-filter-btn.active {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    transform: translateY(-1px);
+    opacity: 1;
+}
+
+.agtech-filter-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Table */
+.agtech-table-wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.agtech-table-scroll {
+    flex: 1;
+    overflow: auto;
+}
+
+.agtech-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+}
+
+.agtech-table thead {
+    background: #f8f9fa;
+    position: sticky;
+    top: 0;
+    z-index: 5;
+}
+
+.agtech-table th {
+    padding: 1rem;
+    text-align: left;
+    font-weight: 600;
+    color: #333;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.agtech-table td {
+    padding: 1rem;
+    border-bottom: 1px solid #f1f3f4;
+    vertical-align: middle;
+}
+
+.agtech-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.agtech-table-badge {
+    display: inline-block;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: white;
+    margin-right: 0.25rem;
+}
+
+.agtech-table-link {
+    color: #00CD6C;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.agtech-table-link:hover {
+    color: #00a855;
+    text-decoration: underline;
+}
+
+/* Legend */
+.agtech-legend {
+    background: white;
+    padding: 1rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    font-size: 0.85rem;
+}
+
+.agtech-legend-title {
+    margin: 0 0 0.75rem 0;
+    font-weight: 600;
+    color: #333;
+}
+
+.agtech-legend-item {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem 0;
+}
+
+.agtech-legend-color {
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: 50%;
+    margin-right: 0.75rem;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Loading State */
+.agtech-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 200px;
+    color: #666;
+    font-size: 1rem;
+}
+
+.agtech-loading::before {
+    content: '';
+    width: 2rem;
+    height: 2rem;
+    border: 2px solid #f3f3f3;
+    border-top: 2px solid #00CD6C;
+    border-radius: 50%;
+    animation: agtech-spin 1s linear infinite;
+    margin-right: 1rem;
+}
+
+@keyframes agtech-spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Error State */
+.agtech-error {
+    padding: 2rem;
+    text-align: center;
+    color: #dc3545;
+    background: #f8d7da;
+    border: 1px solid #f5c2c7;
+    border-radius: 8px;
+    margin: 1rem;
+}
+
+/* =================================================================
+   Mobile Design Fixes für AgTech-Karte
+   ================================================================= */
+
+/* Mobile Layout Korrekturen */
+@media (max-width: 768px) {
+    .agtech-header {
+        padding: 1rem;
+        background: white; /* Weißer Hintergrund für bessere Lesbarkeit */
+    }
+    
+    .agtech-title {
+        font-size: 1.5rem;
+        color: #333; /* Besserer Kontrast */
+    }
+    
+    .agtech-subtitle {
+        color: #666;
+    }
+    
+    .agtech-main {
+        padding: 0.5rem; /* Weniger Padding für mehr Platz */
+    }
+    
+    /* Container Layout für Mobile */
+    .agtech-container {
+        flex-direction: column;
+        gap: 0; /* Kein Gap zwischen Map und Detail Panel */
+        position: relative; /* Für absolute Positionierung des Detail Panels */
+    }
+    
+    /* Map Section - Volle Breite */
+    .agtech-map-section {
+        width: 100%;
+        margin: 0;
+        border-radius: 8px; /* Kleinerer Radius für Mobile */
+    }
+    
+    .agtech-map {
+        height: 60vh;
+        min-height: 400px;
+        width: 100%;
+    }
+    
+    /* Detail Panel - Overlay über Map */
+    .agtech-detail-panel {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 60vh; /* Gleiche Höhe wie Map */
+        max-height: 60vh;
+        z-index: 1000; /* Über der Map */
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); /* Stärkerer Schatten für Overlay */
+    }
+    
+    .agtech-detail-panel.visible {
+        display: flex;
+    }
+    
+    /* Detail Header angepasst */
+    .agtech-detail-header {
+        padding: 1rem;
+        background: #00CD6C; /* Grüner Hintergrund für bessere Sichtbarkeit */
+        color: white;
+    }
+    
+    .agtech-detail-title {
+        color: white;
+        font-size: 1.1rem;
+    }
+    
+    .agtech-org-counter {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+    
+    .agtech-close-btn {
+        color: white;
+        background: rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+    }
+    
+    .agtech-close-btn:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: white;
+    }
+    
+    /* Info Tooltip angepasst */
+    .agtech-info-tooltip {
+        position: absolute;
+        bottom: 1rem;
+        left: 5.5rem;
+        right: 5.5rem;
+        transform: none;
+        margin: 0;
+        font-size: 0.6rem;
+        text-align: center;
+        background: rgba(255, 255, 255, 0.3);
+        backdrop-filter: blur(5px);
+    }
+    
+    /* Map Controls verstecken */
+    .agtech-map-controls {
+        display: none;
+    }
+    
+    /* Legend verstecken */
+    .agtech-legend {
+        display: none !important;
+    }
+    
+    /* Table Section Anpassungen */
+    .agtech-table-container {
+        flex-direction: column;
+        min-height: auto;
+    }
+    
+    .agtech-filter-panel {
+        width: 100%;
+    }
+    
+    .agtech-filter-toggle {
+        display: block;
+    }
+    
+    .agtech-filter-content.collapsed {
+        display: none;
+    }
+    
+    .agtech-filter-header {
+        padding: 1rem;
+    }
+    
+    .agtech-filter-content {
+        padding: 1rem;
+    }
+    
+    /* Filter Buttons angepasst */
+    .agtech-filter-btn {
+        font-size: 0.8rem;
+        padding: 0.4rem 0.8rem;
+    }
+    
+    /* Table responsive */
+    .agtech-table {
+        font-size: 0.8rem;
+    }
+    
+    .agtech-table th,
+    .agtech-table td {
+        padding: 0.5rem;
+    }
+    
+    /* Org Cards in Detail Panel */
+    .agtech-org-card {
+        padding: 1rem;
+    }
+    
+    .agtech-org-name {
+        font-size: 1rem;
+    }
+    
+    .agtech-org-description {
+        font-size: 0.85rem;
+    }
+    
+    .agtech-org-badge {
+        font-size: 0.7rem;
+        padding: 0.2rem 0.6rem;
+    }
+}
+
+/* Zusätzliche Fixes für sehr kleine Bildschirme */
+@media (max-width: 480px) {
+    .agtech-main {
+        padding: 0.25rem;
+    }
+    
+    .agtech-title {
+        font-size: 1.3rem;
+    }
+    
+    .agtech-map {
+        height: 70vh;
+        min-height: 350px;
+    }
+    
+    .agtech-detail-panel {
+        height: 70vh;
+        max-height: 70vh;
+    }
+    
+    .agtech-detail-header {
+        padding: 0.75rem;
+    }
+    
+    .agtech-detail-title {
+        font-size: 1rem;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+    }
+    
+    .agtech-org-counter {
+        width: 1.5rem;
+        height: 1.5rem;
+        font-size: 0.8rem;
+    }
+    
+    .agtech-filter-group-title {
+        font-size: 0.9rem;
+    }
+    
+    .agtech-table th,
+    .agtech-table td {
+        padding: 0.4rem;
+        font-size: 0.75rem;
+    }
+}
+
+/* Touch-optimierte Interaktionen */
+@media (pointer: coarse) {
+    .agtech-filter-btn,
+    .agtech-control-btn {
+        min-height: 44px; /* Touch-freundliche Mindestgröße */
+        min-width: 44px;
+    }
+    
+    .agtech-close-btn {
+        min-height: 44px;
+        min-width: 44px;
+    }
+    
+    .agtech-org-link {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+}
+
+/* Landscape Orientation auf Mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+    .agtech-map {
+        height: 80vh;
+        min-height: 300px;
+    }
+    
+    .agtech-detail-panel {
+        height: 80vh;
+        max-height: 80vh;
+    }
+}
+
+/* Accessibility */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    .agtech-app {
+        background: white;
+        color: black;
+    }
+    
+    .agtech-filter-btn,
+    .agtech-org-badge,
+    .agtech-table-badge {
+        border: 2px solid black;
+    }
+}
